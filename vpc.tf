@@ -43,3 +43,12 @@ resource "aws_subnet" "ibm_app_sn" {
     Name = "ibm-app-subnet"
   }
 }
+
+# Create Internet Gateway
+resource "aws_internet_gateway" "ibm_igw" {
+  vpc_id = aws_vpc.ibm_vpc.id
+
+  tags = {
+    Name = "ibm-internet-gateway"
+  }
+}
