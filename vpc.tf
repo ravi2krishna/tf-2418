@@ -31,3 +31,15 @@ resource "aws_subnet" "ibm_db_sn" {
     Name = "ibm-data-subnet"
   }
 }
+
+# Create Subnet for Application Servers - Temporary
+resource "aws_subnet" "ibm_app_sn" {
+  vpc_id     = aws_vpc.ibm_vpc.id
+  cidr_block = "10.0.3.0/24"
+  availability_zone = "us-west-2c"
+  map_public_ip_on_launch = "true"
+
+  tags = {
+    Name = "ibm-app-subnet"
+  }
+}
