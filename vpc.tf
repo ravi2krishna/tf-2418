@@ -76,3 +76,14 @@ resource "aws_route_table" "ibm_pvt_rt" {
   }
 }
 
+# Map Public Subnets with Public RT
+resource "aws_route_table_association" "ibm_web_rt" {
+  subnet_id      = aws_subnet.ibm_web_sn.id
+  route_table_id = aws_route_table.ibm_pub_rt.id
+}
+
+resource "aws_route_table_association" "ibm_app_rt" {
+  subnet_id      = aws_subnet.ibm_app_sn.id
+  route_table_id = aws_route_table.ibm_pub_rt.id
+}
+
