@@ -67,3 +67,12 @@ resource "aws_route_table" "ibm_pub_rt" {
   }
 }
 
+# Create Private Route Table
+resource "aws_route_table" "ibm_pvt_rt" {
+  vpc_id = aws_vpc.ibm_vpc.id
+
+  tags = {
+    Name = "ibm-private-route"
+  }
+}
+
