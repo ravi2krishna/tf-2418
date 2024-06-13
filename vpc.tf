@@ -232,7 +232,7 @@ resource "aws_security_group" "ibm_app_sg" {
   }
 }
 
-# Web Secuirty Group Rule - SSH
+# App Secuirty Group Rule - SSH
 resource "aws_vpc_security_group_ingress_rule" "ibm_app_sg_ssh" {
   security_group_id = aws_security_group.ibm_app_sg.id
   cidr_ipv4         = "0.0.0.0/0"
@@ -241,7 +241,7 @@ resource "aws_vpc_security_group_ingress_rule" "ibm_app_sg_ssh" {
   to_port           = 22
 }
 
-# Web Secuirty Group Rule - HTTP
+# App Secuirty Group Rule - HTTP
 resource "aws_vpc_security_group_ingress_rule" "ibm_app_sg_8080" {
   security_group_id = aws_security_group.ibm_app_sg.id
   cidr_ipv4         = "0.0.0.0/0"
