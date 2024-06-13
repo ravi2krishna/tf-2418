@@ -52,3 +52,18 @@ resource "aws_internet_gateway" "ibm_igw" {
     Name = "ibm-internet-gateway"
   }
 }
+
+# Create Public Route Table
+resource "aws_route_table" "ibm_pub_rt" {
+  vpc_id = aws_vpc.ibm_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.ibm_igw.id
+  }
+
+  tags = {
+    Name = "ibm-public-route"
+  }
+}
+
