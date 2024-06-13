@@ -249,3 +249,32 @@ resource "aws_vpc_security_group_ingress_rule" "ibm_app_sg_8080" {
   ip_protocol       = "tcp"
   to_port           = 8080
 }
+
+# DB Secuirty Group
+resource "aws_security_group" "ibm_db_sg" {
+  name        = "ibm_db_sg"
+  description = "Allow SSH & Postgres Traffic"
+  vpc_id      = aws_vpc.ibm_vpc.id
+
+  tags = {
+    Name = "ibm-db-firewall"
+  }
+}
+
+# DB Secuirty Group Rule - SSH
+resource "aws_vpc_security_group_ingress_rule" "ibm_db_sg_ssh" {
+  security_group_id = aws_security_group.ibm_db_sg.id
+  cidr_ipv4         = "10.0.0.0/16"
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+# DB Secuirty Group Rule - Postgres
+resource "aws_vpc_security_group_ingress_rule" "ibm_db_sg_postgres" {
+  security_group_id = aws_security_group.ibm_db_sg.id
+  cidr_ipv4         = "10.0.0.0/16"
+  from_port         = 5432
+  ip_protocol       = "tcp"
+  to_port           = 5432
+}
