@@ -119,3 +119,9 @@ resource "aws_network_acl" "ibm_web_nacl" {
     Name = "ibm-web-nacl"
   }
 }
+
+# Web NACL & Subnet Association
+resource "aws_network_acl_association" "ibm_web_nacl_association" {
+  network_acl_id = aws_network_acl.ibm_web_nacl.id
+  subnet_id      = aws_subnet.ibm_web_sn.id
+}
