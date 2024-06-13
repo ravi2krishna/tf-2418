@@ -87,3 +87,8 @@ resource "aws_route_table_association" "ibm_app_rt" {
   route_table_id = aws_route_table.ibm_pub_rt.id
 }
 
+# Map Private Subnets with Private RT
+resource "aws_route_table_association" "ibm_db_rt" {
+  subnet_id      = aws_subnet.ibm_db_sn.id
+  route_table_id = aws_route_table.ibm_pvt_rt.id
+}
